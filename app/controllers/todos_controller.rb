@@ -5,8 +5,13 @@ class TodosController < ApplicationController
   end
 
   def create
-    todo = Todo.create(todo_param)
-    render json: todo
+    todo = Todo.new(todo_param)
+    if todo.save
+      render json: todo, status: 201
+    else
+      message = {'message': 'somerhing went wrong'}
+      render json: message, status: 400
+    end
   end
 
   def update
@@ -22,7 +27,8 @@ class TodosController < ApplicationController
   end
 
   private
-    def todo_param
-      params.require(:todo).permit(:title, :done)
-    end
+
+  def todo_param
+    params.require(:todo).permit(:title, :done)
+  end
 end
