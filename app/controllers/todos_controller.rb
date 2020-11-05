@@ -9,7 +9,7 @@ class TodosController < ApplicationController
     if todo.save
       render json: todo, status: 201
     else
-      message = {'message': 'somerhing went wrong'}
+      message = { 'message': 'somerhing went wrong' }
       render json: message, status: 400
     end
   end
