@@ -36,16 +36,7 @@ module TheRailsApi
 
     config.middleware.insert_before 0, Rack::Cors do
       allow do
-        origins 'localhost:3001'
-        resource(
-          '*',
-          headers: :any,
-          methods: [:get, :patch, :put, :delete, :post, :options]
-          )
-      end
-
-      allow do
-        origins 'https://dev-dash-board.herokuapp.com/'
+        origins 'localhost:3001', 'https://dev-dash-board.herokuapp.com'
         resource(
           '*',
           headers: :any,
