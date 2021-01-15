@@ -2,6 +2,8 @@ class Todo < ApplicationRecord
   # validate :validate_assign_date
 
   def group_by_assign_date
+    puts '!* ' * 15
+    puts assign_date.localtime.to_date
     assign_date.localtime.to_date
   end
 
