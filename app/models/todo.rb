@@ -3,6 +3,7 @@ class Todo < ApplicationRecord
 
   def group_by_assign_date
     puts '!* ' * 15
+    puts "before modificaiton #{assign_date}"
     puts assign_date.localtime.to_date
     assign_date.localtime.to_date
   end
