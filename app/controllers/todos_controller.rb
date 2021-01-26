@@ -2,6 +2,7 @@ class TodosController < ApplicationController
   def index
     todos = Todo.order("created_at DESC")
     # FIXME: right now this returns all todos, most likely only want yesterdays and todays
+      # actually maybe this is ok, maybe the FE should deal with the dates it wants. the api just returns shit.
     # FIXME: also it takes the time into account so there is a key for every todo created in a 24 hour span
 
     # list.group_by(&:group_by_assign_date).map {|k,v| [k, v.length]}.sort
