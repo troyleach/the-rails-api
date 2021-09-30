@@ -14,8 +14,8 @@ class Todo < ApplicationRecord
     # - I need to somehow pass the time zone now.. this sucks but it is what it is at this point bc of the way I set up the flow. Maybe think about this a bit
     # - then convert the date and group_by date.
     # maybe this was not the best way to do this...
-    puts '!* ' * 15
-    puts "before modificaiton #{assign_date}"
+    # puts '!* ' * 15
+    # puts "before modificaiton #{assign_date}"
     zone = ActiveSupport::TimeZone.new("Central Time (US & Canada)")
     # puts assign_date.localtime.to_date
     # assign_date.localtime.to_date
