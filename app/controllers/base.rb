@@ -15,15 +15,17 @@ class Base < ApplicationController
         :name => event[:name],
         :shortName => event[:shortName],
         :year => event[:season][:year],
-        :competitors => get_competitors(event[:competitions].first[:competitors]),
+        :competitors => get_competitors(event[:competitions]&.first[:competitors]),
         # :broadcasts => event[:competitions].first[:broadcasts].first[:names].first
         # :broadcasts => event[:competitions].first[:broadcasts].map { |networks| networks.names }
-        :broadcasts => get_broadcasts(event[:competitions].first[:broadcasts])
+        :broadcasts => get_broadcasts(event[:competitions]&.first[:broadcasts])
       }
     end
   end
 
   def get_competitors(teams)
+    # this is super fragile. team[:records] did not exist bombed the hole thing
+    # FIXME: should not do this first thing team[:team][:links]&.first[:href]
     teams.map do |team|
       {
         :id => team[:id],
@@ -31,10 +33,10 @@ class Base < ApplicationController
         :name => team[:team][:name],
         :displayName => team[:team][:displayName],
         :abbreviation => team[:team][:abbreviation],
-        :href => team[:team][:links].first[:href],
+        :href => team[:team][:links]&.first[:href],
         :logo => team[:team][:logo],
         :score => team[:score],
-        :records => team[:records].first[:summary]
+        :records => team[:records] && team[:records].first[:summary]
       }
     end
   end
@@ -43,5 +45,6 @@ class Base < ApplicationController
     return 'Unknown' if broadcasts.empty?
     broadcasts.first[:names].first
   end
+:w
 
 end
